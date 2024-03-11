@@ -68,10 +68,11 @@ public class ClienteGui extends JFrame {
         String celular = txtCelular.getText();
         String email = txtEmail.getText();
 
-        if (!cpf.isEmpty() && !nome.isEmpty() && !celular.isEmpty()) {
+        // Verifica se os campos estão preenchidos e se o CPF tem 11 dígitos
+        if (!cpf.isEmpty() && cpf.length() == 11 && !nome.isEmpty() && !celular.isEmpty()) {
             // Verifica se o cliente já existe no HashMap
             if (clientes.containsKey(cpf)) {
-                areaDeTexto.append("Cliente já cadastrado: " + clientes.get(cpf).getNome() + " (CPF: " + cpf + ")\n");
+                JOptionPane.showMessageDialog(this, "Cliente já cadastrado.", "Erro", JOptionPane.ERROR_MESSAGE);
             } else {
                 // Adiciona um novo cliente
                 Cliente novoCliente = new Cliente(nome, cpf, celular, email);
@@ -79,10 +80,10 @@ public class ClienteGui extends JFrame {
                 areaDeTexto.append("Cliente adicionado: " + novoCliente.getNome() + " (CPF: " + cpf + ")\n");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "CPF, Nome e Celular não podem estar vazios.", "Erro",
+            JOptionPane.showMessageDialog(this, "CPF deve ter 11 dígitos e os campos não podem estar vazios.", "Erro",
                     JOptionPane.ERROR_MESSAGE);
         }
-        // Limpa os campos após adicionar o cliente
+
         txtCPF.setText("");
         txtNome.setText("");
         txtCelular.setText("");
