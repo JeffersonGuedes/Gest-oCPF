@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package classes;
 
 import javax.swing.*;
@@ -47,6 +43,7 @@ public class ClienteGui extends JFrame {
         txtEmail = new JTextField();
         painelEntrada.add(txtEmail);
 
+        // Botões
         JButton btnAdicionar = new JButton("Adicionar Cliente");
         painelEntrada.add(btnAdicionar);
 
@@ -57,7 +54,7 @@ public class ClienteGui extends JFrame {
         areaDeTexto = new JTextArea();
         add(new JScrollPane(areaDeTexto), BorderLayout.CENTER);
 
-        // Listeners para os botões
+        // Ações do botoes
         btnAdicionar.addActionListener(e -> adicionarCliente());
         btnBuscar.addActionListener(e -> buscarCliente());
     }
@@ -70,7 +67,7 @@ public class ClienteGui extends JFrame {
 
         // Verifica se os campos estão preenchidos e se o CPF tem 11 dígitos
         if (!cpf.isEmpty() && cpf.length() == 11 && !nome.isEmpty() && !celular.isEmpty()) {
-            // Verifica se o cliente já existe no HashMap
+            // Verifica se o cliente já existe no Hash
             if (clientes.containsKey(cpf)) {
                 JOptionPane.showMessageDialog(this, "Cliente já cadastrado.", "Erro", JOptionPane.ERROR_MESSAGE);
             } else {
@@ -93,7 +90,7 @@ public class ClienteGui extends JFrame {
     private void buscarCliente() {
         String cpf = txtCPF.getText();
         if (!cpf.isEmpty()) {
-            // Busca o cliente no HashMap
+            // Busca o cliente no Hash
             Cliente cliente = clientes.get(cpf);
             if (cliente != null) {
                 areaDeTexto.append("Cliente encontrado: \n");
